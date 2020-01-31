@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     Rigidbody enemyRb;
     GameObject player;
     public float speed;
+    public int enemyCount;
+    
     void Start()
     {
         enemyRb = GetComponent<Rigidbody>();
@@ -20,5 +22,12 @@ public class Enemy : MonoBehaviour
         //zorgt ervoor dat de enemy achter het gameobject player aangaat
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+        
+
     }
 }
